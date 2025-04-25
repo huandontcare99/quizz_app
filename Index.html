@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ứng dụng Trắc Nghiệm</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .question { margin-bottom: 20px; }
+        .question h4 { margin: 0 0 10px; }
+        .option { display: block; margin-bottom: 5px; }
+        #submit-btn { margin-top: 20px; padding: 10px 20px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h2>Bài Trắc Nghiệm</h2>
+    <form id="quiz-form">
+        <div class="question">
+            <h4>Câu 1: Ba giai đoạn nào sau đây thuộc quy trình 3 giai đoạn trong mô hình thác nước?</h4>
+            <label class="option"><input type="radio" name="q1" value="0"> Phân tích; Kiểm thử; Triển khai</label>
+            <label class="option"><input type="radio" name="q1" value="1"> Xác định yêu cầu; Thiết kế; Lập trình</label>
+            <label class="option"><input type="radio" name="q1" value="2"> Lập kế hoạch; Thực hiện; Giám sát</label>
+            <label class="option"><input type="radio" name="q1" value="3"> Đặc tả; Xây dựng; Bảo trì</label>
+        </div>
+        
+        <div class="question">
+            <h4>Câu 2: Cách tiếp cận làm bản mẫu là cách tiếp cận tốt nhất khi:</h4>
+            <label class="option"><input type="radio" name="q2" value="0"> Yêu cầu của khách hàng đã được xác định rõ ràng.</label>
+            <label class="option"><input type="radio" name="q2" value="1"> Dự án có thời gian và nguồn lực hạn chế.</label>
+            <label class="option"><input type="radio" name="q2" value="2"> Xác định rõ mục tiêu, nhưng chưa xác định được đầu vào và đầu ra.</label>
+            <label class="option"><input type="radio" name="q2" value="3"> Cần một sản phẩm hoàn thiện ngay từ đầu.</label>
+        </div>
+
+        <!-- Thêm các câu hỏi khác ở đây -->
+
+        <button type="button" id="submit-btn" onclick="submitQuiz()">Nộp bài</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        const correctAnswers = [1, 2];  // Đáp án đúng cho câu 1 và câu 2
+
+        function submitQuiz() {
+            let score = 0;
+            for (let i = 1; i <= 2; i++) {  // Cập nhật số câu hỏi ở đây nếu có thêm
+                let selected = document.querySelector(`input[name='q${i}']:checked`);
+                if (selected && parseInt(selected.value) === correctAnswers[i-1]) {
+                    score++;
+                }
+            }
+            document.getElementById('result').innerHTML =
+                `<h3>Bạn đã trả lời đúng ${score}/2 câu.</h3>`;  // Thay số 2 bằng tổng số câu hỏi
+        }
+    </script>
+</body>
+</html>
